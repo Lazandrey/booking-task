@@ -12,7 +12,7 @@ const accommodationSchema = mongoose.Schema({
     city: { type: String, required: true },
     country: { type: String, required: true },
   },
-  price: { type: Number, required: true },
+
   area: { type: Number, required: true },
   roomsNo: { type: Number, required: true },
   floorNo: { type: Number, required: true },

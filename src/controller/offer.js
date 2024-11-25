@@ -92,4 +92,26 @@ const GET_ALL_OFFER = async (req, res) => {
   }
 };
 
-export { CREATE_OFFER, GET_OFFER_BY_ID, GET_ALL_OFFER };
+const DELETE_OFFER_BY_ID = async (req, res) => {
+  const offer = await offerModel.findOne({
+    id: req.params.id,
+    isDeleted: false,
+  });
+  if (!offer) {
+    return res.status(404).json({ responce: "Data not exist" });
+  }
+  const tenant = await tenantModel.findOne({ id: req.body.tenantId });
+  if (!offer.tenant.equals(tenant._id)) {
+    return res.status(403).json({ responce: "Forbidden" });
+  }
+  try {
+    offer.isDeleted = true;
+    await offer.save();
+    return res.status(200).json({ responce: "Offer was deleted successfully" });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ message: "we have some problems" });
+  }
+};
+
+export { CREATE_OFFER, GET_OFFER_BY_ID, GET_ALL_OFFER, DELETE_OFFER_BY_ID };

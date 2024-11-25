@@ -60,9 +60,7 @@ const isValidCreateAccommodation = async (accommodation) => {
   if (!accommodation.description) {
     response.push("Description is required");
   }
-  if (!accommodation.price) {
-    response.push("Price is required");
-  }
+
   if (!accommodation.area) {
     response.push("Area is required");
   }

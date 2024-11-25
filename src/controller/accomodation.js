@@ -27,7 +27,7 @@ const CREATE_ACCOMMODATION = async (req, res) => {
       city: req.body.address.city,
       country: req.body.address.country,
     },
-    price: req.body.price,
+
     area: req.body.area,
     roomsNo: req.body.roomsNo,
     floorNo: req.body.floorNo,
